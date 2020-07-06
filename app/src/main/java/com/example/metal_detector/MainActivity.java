@@ -2,6 +2,8 @@ package com.example.metal_detector;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.view.View;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,10 +13,11 @@ import android.media.MediaPlayer;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -24,7 +27,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView X_Rate;
     private TextView Y_Rate;
     private TextView Z_Rate;
+    private int count;
     MediaPlayer player;
+    Vibrator v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +41,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         X_Rate = (TextView) findViewById(R.id.X_Rate);
         Y_Rate = (TextView) findViewById(R.id.Y_Rate);
         Z_Rate = (TextView) findViewById(R.id.Z_Rate);
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        pause = (Button) findViewById(R.id.pause);
 
-        sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -50,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         int id = item.getItemId();
 
         if (id == R.id.set) {
-            Intent set_intent = new Intent(this, settings.class);
+            Intent set_intent = new Intent(this, Settings.class);
             startActivity(set_intent);
             return false;
         }
@@ -83,15 +90,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Y_Rate.setText(Math.round(Y) + " μT");
             Z_Rate.setText(Math.round(Z) + " μT");
 
-            /*boolean over = false;
+            boolean over = false;
             while (over) {
-                if (total >= 160) {
-                    play();
+                if (total >= 30) {
+                    if (Settings.sound_toggle) {
+                        if (player == null) {
+                            player = MediaPlayer.create(this, R.raw.alert);
+                        }
+                        player.start();
+                    }
+                    if (Settings.vibrate_toggle) {
+                        v.vibrate(800);
+                    }
                 }
                 else if (total < 160) {
-                    stop();
+                    if (player != null) {
+                        player.release();
+                        player = null;
+                    }
                 }
-            }*/
+            }
         }
     }
 /*

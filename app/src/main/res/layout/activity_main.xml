@@ -44,9 +44,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/rate"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/rate"
         app:layout_constraintTop_toTopOf="@+id/rate"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.975" />
 
     <TextView
         android:id="@+id/labelX"
