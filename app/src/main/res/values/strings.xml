@@ -15,4 +15,5 @@
     <string name="X">X축 수치:</string>
     <string name="Y">Y축 수치:</string>
     <string name="Z">Z축 수치:</string>
+    <string name="resume">측정 재개</string>
 </resources>

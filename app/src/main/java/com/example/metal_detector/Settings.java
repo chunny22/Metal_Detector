@@ -3,29 +3,25 @@ package com.example.metal_detector;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_DialogListener {
-    private TextView alertrate;
-    private Button alertadjust;
+    private TextView alert_rate;
     SwitchCompat sound, vibrate;
     static boolean sound_toggle, vibrate_toggle;
 
-    //TODO fix the switches for vibrate and sound
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        alertrate = (TextView) findViewById(R.id.alert_rate);
-        alertadjust = (Button) findViewById(R.id.alert_adjust);
+        alert_rate = findViewById(R.id.alert_rate);
+        Button alert_adjust = findViewById(R.id.alert_adjust);
         sound = findViewById(R.id.sound);
         vibrate = findViewById(R.id.vibrate);
 
@@ -34,13 +30,13 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
         sound.setChecked(sharedPreferences.getBoolean("value",true));
         vibrate.setChecked(sharedPreferences1.getBoolean("value",true));
 
-        alertadjust.setOnClickListener(new View.OnClickListener() {
+        alert_adjust.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                open_adjust();
         }
         });
-
+        //TODO fix the switches for vibrate and sound
         sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +85,6 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
 
     @Override
     public void applyTexts(String adjusted_rate) {
-        alertrate.setText(adjusted_rate);
+        alert_rate.setText(adjusted_rate);
     }
 }

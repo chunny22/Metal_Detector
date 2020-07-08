@@ -22,12 +22,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensormanager;
-    private TextView rate;
-    private Button pause;
-    private TextView X_Rate;
-    private TextView Y_Rate;
-    private TextView Z_Rate;
-    private int count;
+    private TextView rate, X_Rate, Y_Rate, Z_Rate;
     MediaPlayer player;
     Vibrator v;
 
@@ -36,16 +31,35 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rate = (TextView) findViewById(R.id.rate);
-        pause = (Button) findViewById(R.id.pause);
-        X_Rate = (TextView) findViewById(R.id.X_Rate);
-        Y_Rate = (TextView) findViewById(R.id.Y_Rate);
-        Z_Rate = (TextView) findViewById(R.id.Z_Rate);
+        rate = findViewById(R.id.rate);
+        X_Rate = findViewById(R.id.X_Rate);
+        Y_Rate = findViewById(R.id.Y_Rate);
+        Z_Rate = findViewById(R.id.Z_Rate);
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        pause = (Button) findViewById(R.id.pause);
+        Button pause = findViewById(R.id.pause);
+        Button resume = findViewById(R.id.resume);
+
+        sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        //TODO check whether pause/resume button works
+        //TODO implement pausing the measurement and retrieving the information
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "일시정지됨", Toast.LENGTH_SHORT).show();
+                onPause();
+            }
+        });
+
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(), "측정 재개됨", Toast.LENGTH_SHORT).show();
+                onResume();
+            }
+        });
 
     }
-
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
