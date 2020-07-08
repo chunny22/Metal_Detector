@@ -45,14 +45,14 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
                     edit.putBoolean("value", true);
                     edit.apply();
                     sound.setChecked(true);
-                    Toast.makeText(getBaseContext(),"소리가 켜졌습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Sound is now on", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     SharedPreferences.Editor edit = getSharedPreferences("sound off", MODE_PRIVATE).edit();
                     edit.putBoolean("value", false);
                     edit.apply();
                     sound.setChecked(false);
-                    Toast.makeText(getBaseContext(),"소리가 꺼졌습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Sound is now off", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -65,14 +65,14 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
                     editor.putBoolean("value",true);
                     editor.apply();
                     vibrate.setChecked(true);
-                    Toast.makeText(getBaseContext(), "진동이 켜졌습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Vibration is now on", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     SharedPreferences.Editor editor = getSharedPreferences("vibrate off", MODE_PRIVATE).edit();
                     editor.putBoolean("value", false);
                     editor.apply();
                     vibrate.setChecked(false);
-                    Toast.makeText(getBaseContext(),"진동이 꺼졌습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Vibration is now off", Toast.LENGTH_SHORT).show();
                 }
             }
         });

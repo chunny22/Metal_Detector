@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "일시정지됨", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Detecting Paused", Toast.LENGTH_SHORT).show();
                 onPause();
             }
         });
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "측정 재개됨", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Detecting Resumed", Toast.LENGTH_SHORT).show();
                 onResume();
             }
         });

@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">Metal Detector</string>
-    <string name="settings">설정</string>
-    <string name="graph">그래프</string>
-    <string name="line">라인 그래프</string>
-    <string name="bar">바 그래프</string>
-    <string name="vibrate">진동 ON/OFF</string>
-    <string name="sound">소리 ON/OFF</string>
-    <string name="pause">일시정지</string>
-    <string name="sensitivity">자기장 감도:</string>
-    <string name="back">돌아가기</string>
-    <string name="alert_rate">경고 수치:</string>
-    <string name="adjust">경고 수치 조정</string>
-    <string name="adjust_input">원하는 수치를 입력하세요…</string>
-    <string name="X">X축 수치:</string>
-    <string name="Y">Y축 수치:</string>
-    <string name="Z">Z축 수치:</string>
-    <string name="resume">측정 재개</string>
+    <string name="settings">Settings</string>
+    <string name="graph">Graph</string>
+    <string name="line">Line Graph</string>
+    <string name="bar">Bar Graph</string>
+    <string name="vibrate">Vibrate ON/OFF</string>
+    <string name="sound">Sound ON/OFF</string>
+    <string name="pause">Pause Detect</string>
+    <string name="sensitivity">Magnetic Wave:</string>
+    <string name="back">Go Back</string>
+    <string name="alert_rate">Alert Rate:</string>
+    <string name="adjust">Alert Rate Adjust</string>
+    <string name="adjust_input">Enter the desired alerting rate:</string>
+    <string name="X">X Axis:</string>
+    <string name="Y">Y Axis:</string>
+    <string name="Z">Z Axis:</string>
+    <string name="resume">Resume</string>
 </resources>
