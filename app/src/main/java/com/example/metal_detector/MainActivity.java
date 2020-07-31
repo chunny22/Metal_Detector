@@ -1,8 +1,15 @@
 package com.example.metal_detector;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.view.View;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -19,11 +26,13 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensormanager;
+    private int PERMISSION_CODE = 1;
     private TextView rate, X_Rate, Y_Rate, Z_Rate;
-    MediaPlayer player;
+    //MediaPlayer player;
     Vibrator v;
 
     @Override
@@ -38,15 +47,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         Button pause = findViewById(R.id.pause);
         Button resume = findViewById(R.id.resume);
+        Button permission = findViewById(R.id.permission);
 
         sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        //TODO check whether pause/resume button works
         //TODO implement pausing the measurement and retrieving the information
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Detecting Paused", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Paused detecting", Toast.LENGTH_SHORT).show();
                 onPause();
             }
         });
@@ -54,13 +62,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "Detecting Resumed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Resumed detecting", Toast.LENGTH_SHORT).show();
                 onResume();
             }
         });
 
     }
 
+    //TODO wifi/LTE
+    //TODO get set POST
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.drop_menu, menu);
@@ -75,6 +85,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             startActivity(set_intent);
             return false;
         }
+
+        if (id == R.id.data) {
+            Intent set_intent = new Intent(this, EnterData.class);
+            startActivity(set_intent);
+            return false;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -104,9 +121,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Y_Rate.setText(Math.round(Y) + " μT");
             Z_Rate.setText(Math.round(Z) + " μT");
 
-            boolean over = false;
+            /*boolean over = false;
             while (over) {
-                if (total >= 30) {
+                if (total >= 160) {
                     if (Settings.sound_toggle) {
                         if (player == null) {
                             player = MediaPlayer.create(this, R.raw.alert);
@@ -114,7 +131,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         player.start();
                     }
                     if (Settings.vibrate_toggle) {
-                        v.vibrate(800);
+                        long[] pattern = {100,300,100,700,300,2000};
+                        v.vibrate(pattern, -1);
                     }
                 }
                 else if (total < 160) {
@@ -123,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         player = null;
                     }
                 }
-            }
+            }*/
         }
     }
 /*
@@ -154,4 +172,5 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
+
 }

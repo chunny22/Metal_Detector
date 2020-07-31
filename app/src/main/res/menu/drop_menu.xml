@@ -12,6 +12,9 @@
         </menu>
     </item>
     <item
+        android:id="@+id/data"
+        android:title="@string/data" />
+    <item
         android:id="@+id/set"
         android:title="@string/settings"
         app:showAsAction="never" />

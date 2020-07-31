@@ -1,13 +1,14 @@
 package com.example.metal_detector;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "waves")
-public class Mag_Waves
-{
+public class Mag_Waves {
     @PrimaryKey
+    @NonNull
     private String name;
 
     @ColumnInfo(name = "total_rate")
@@ -23,7 +24,7 @@ public class Mag_Waves
     private float Z_rate;
 
     //Classes
-    public String getName () {
+    public String getName() {
         return name;
     }
 

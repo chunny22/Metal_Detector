@@ -26,7 +26,7 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
         vibrate = findViewById(R.id.vibrate);
 
         SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
-        SharedPreferences sharedPreferences1 = getSharedPreferences("vibrate",MODE_PRIVATE);
+        SharedPreferences sharedPreferences1 = getSharedPreferences("vibrate", MODE_PRIVATE);
         sound.setChecked(sharedPreferences.getBoolean("value",true));
         vibrate.setChecked(sharedPreferences1.getBoolean("value",true));
 
@@ -45,14 +45,14 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
                     edit.putBoolean("value", true);
                     edit.apply();
                     sound.setChecked(true);
-                    Toast.makeText(getBaseContext(),"Sound is now on", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Sound is on", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     SharedPreferences.Editor edit = getSharedPreferences("sound off", MODE_PRIVATE).edit();
                     edit.putBoolean("value", false);
                     edit.apply();
                     sound.setChecked(false);
-                    Toast.makeText(getBaseContext(),"Sound is now off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Sound is off", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -79,8 +79,8 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
     }
 
     public void open_adjust() {
-        Alert_Dialog alertdialog = new Alert_Dialog();
-        alertdialog.show(getSupportFragmentManager(), "Adjustment Dialog");
+        Alert_Dialog alert_dialog = new Alert_Dialog();
+        alert_dialog.show(getSupportFragmentManager(), "Adjustment Dialog");
     }
 
     @Override

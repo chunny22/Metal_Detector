@@ -17,6 +17,7 @@ public class Alert_Dialog extends AppCompatDialogFragment {
     private Alert_DialogListener listener;
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -42,7 +43,7 @@ public class Alert_Dialog extends AppCompatDialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         try {

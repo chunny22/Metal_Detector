@@ -6,7 +6,7 @@
     <string name="bar">Bar Graph</string>
     <string name="vibrate">Vibrate ON/OFF</string>
     <string name="sound">Sound ON/OFF</string>
-    <string name="pause">Pause Detect</string>
+    <string name="pause">Pause</string>
     <string name="sensitivity">Magnetic Wave:</string>
     <string name="back">Go Back</string>
     <string name="alert_rate">Alert Rate:</string>
@@ -16,4 +16,7 @@
     <string name="Y">Y Axis:</string>
     <string name="Z">Z Axis:</string>
     <string name="resume">Resume</string>
+    <string name="data">Enter Data</string>
+    <string name="title_activity_enterdata">enterdata</string>
+    <string name="permission">Permission</string>
 </resources>
