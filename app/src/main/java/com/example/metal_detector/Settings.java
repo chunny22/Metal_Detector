@@ -36,6 +36,7 @@ public class Settings extends AppCompatActivity implements Alert_Dialog.Alert_Di
                open_adjust();
         }
         });
+
         //TODO fix the switches for vibrate and sound
         sound.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 public class Alert_Dialog extends AppCompatDialogFragment {
     private EditText alert_adjusting;
     private Alert_DialogListener listener;
+    public static Double value = 160.0;
 
     @Override
     @NonNull
@@ -25,17 +26,18 @@ public class Alert_Dialog extends AppCompatDialogFragment {
         View view  = inflater.inflate(R.layout.layout_alert_adjust, null);
 
         builder.setView(view)
-                .setTitle("경고 수치 설정")
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                .setTitle("Setting Alerting Rate")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
                 })
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String adjusted_rate = alert_adjusting.getText().toString();
                         listener.applyTexts(adjusted_rate);
+                        value = Double.valueOf(adjusted_rate);
                     }
                 });
         alert_adjusting = view.findViewById(R.id.adjusting);

@@ -1,15 +1,8 @@
 package com.example.metal_detector;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
 import android.view.View;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -26,14 +19,12 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Toast;
 
-
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensormanager;
-    private int PERMISSION_CODE = 1;
     private TextView rate, X_Rate, Y_Rate, Z_Rate;
-    //MediaPlayer player;
     Vibrator v;
+    MediaPlayer alert_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +36,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Y_Rate = findViewById(R.id.Y_Rate);
         Z_Rate = findViewById(R.id.Z_Rate);
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        alert_sound = MediaPlayer.create(this, R.raw.alert);
         Button pause = findViewById(R.id.pause);
         Button resume = findViewById(R.id.resume);
-        Button permission = findViewById(R.id.permission);
 
         sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
         //TODO implement pausing the measurement and retrieving the information
@@ -66,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 onResume();
             }
         });
-
     }
 
     //TODO wifi/LTE
@@ -109,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        boolean flag = false;
+
         if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             float X = event.values[0];
             float Y = event.values[1];
@@ -121,31 +113,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Y_Rate.setText(Math.round(Y) + " μT");
             Z_Rate.setText(Math.round(Z) + " μT");
 
-            /*boolean over = false;
-            while (over) {
-                if (total >= 160) {
-                    if (Settings.sound_toggle) {
-                        if (player == null) {
-                            player = MediaPlayer.create(this, R.raw.alert);
-                        }
-                        player.start();
-                    }
-                    if (Settings.vibrate_toggle) {
-                        long[] pattern = {100,300,100,700,300,2000};
-                        v.vibrate(pattern, -1);
-                    }
+            while (!flag) {
+                if (total >= Alert_Dialog.value) {
+                    v.vibrate(500);
+                    alert_sound.start();
                 }
-                else if (total < 160) {
-                    if (player != null) {
-                        player.release();
-                        player = null;
-                    }
+                else {
+                    v.cancel();
+                    alert_sound.stop();
+                    flag = true;
                 }
-            }*/
+            }
         }
     }
-/*
-    public void play() {
+
+    /*public void play() {
         if (player == null) {
             player = MediaPlayer.create(this,R.raw.alert);
         }

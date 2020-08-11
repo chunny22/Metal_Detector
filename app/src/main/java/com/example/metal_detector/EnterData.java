@@ -20,7 +20,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
 public class EnterData extends AppCompatActivity {
 
     private static String IP_ADDRESS = "10.0.2.2";
@@ -69,10 +68,8 @@ public class EnterData extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressDialog = ProgressDialog.show(EnterData.this, "Please Wait", null, true, true);
         }
-
 
         @Override
         protected void onPostExecute(String result) {
@@ -90,12 +87,9 @@ public class EnterData extends AppCompatActivity {
             String x = (String)params[2];
             String y = (String)params[3];
             String z = (String)params[4];
-            //TODO review original code
+
             String serverURL = (String)params[0];
-
-            //TODO ask the code below
-            String postParameters = "total=" + total + "&total=" + total;
-
+            String postParameters = "total=" + total + "&x_coord=" + x + "&y_coord=" + y + "&z_coord=" + z;
 
             try {
                 URL url = new URL(serverURL);
@@ -115,10 +109,10 @@ public class EnterData extends AppCompatActivity {
                 Log.d(TAG, "POST response code - " + responseStatusCode);
 
                 InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
                     inputStream = httpURLConnection.getInputStream();
                 }
-                else{
+                else {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
@@ -128,7 +122,7 @@ public class EnterData extends AppCompatActivity {
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
-                while((line = bufferedReader.readLine()) != null){
+                while((line = bufferedReader.readLine()) != null) {
                     sb.append(line);
                 }
 
