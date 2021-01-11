@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="portrait"
     tools:context=".Settings">
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/vibrate"
         android:layout_width="381dp"
         android:layout_height="108dp"
-        android:checked="true"
         android:text="@string/vibrate"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,6 @@
         android:id="@+id/sound"
         android:layout_width="382dp"
         android:layout_height="93dp"
-        android:checked="true"
         android:text="@string/sound"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,24 +40,24 @@
         android:textColor="@android:color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintEnd_toStartOf="@+id/alert_rate"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.338" />
 
     <TextView
         android:id="@+id/alert_rate"
-        android:layout_width="245dp"
-        android:layout_height="62dp"
+        android:layout_width="215dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:gravity="center_vertical"
         android:text="160"
         android:textColor="@android:color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.342" />
 
